@@ -34,8 +34,7 @@
           let li = document.createElement("li");
           let now = new Date();
 
-          let data = JSON.parse(e.data);
-          let msg = `${now.toISOString()}: ${data.message} ${data.id}`;
+          let msg = `${now.toISOString()}: ${e.data}`;
 
           li.appendChild(document.createTextNode(msg));
           ul.appendChild(li);
