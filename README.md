@@ -45,7 +45,7 @@ sse();
 ```
 ![SSE test image](./img/test_sse.png)
 
-Based on the sever logs it was show that you the server sends multiple "responses" per request
+Based on the sever logs it shows you that the server sends multiple "responses" per request
 ```
 127.0.0.1 - - [03/Sep/2020 22:57:52] "GET /stream HTTP/1.1" 200 -
 [2020-09-03 22:57:52,936] DEBUG in app: {'id': 'bce00663-ed8d-44df-beef-290314446692', 'message': 'Data pushed from server: (2)'}
