@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <style>
+    #event-wrapper {
+      padding: 25px;
+    }
+
+    #event {
+      padding: 25px;
+    }
+  </style>
+
+  <body>
+    <div class="event-wrapper">
+      <button id="event-button" onclick="onPress()">
+        Test server-sent events
+      </button>
+      <ul class="events"></ul>
+    </div>
+
+    <script>
+      const onPress = (e) => {
+        let ul = document.querySelector(".events");
+        ul.innerHTML = "";
+        sse(); // triggering the server-sent events
+      };
+
+      const sse = () => {
+        let estream = new EventSource("/stream");
+        estream.onopen = (e) => console.log(e);
+
+        estream.onmessage = (e) => {
+          let ul = document.querySelector(".events");
+          let li = document.createElement("li");
+          let now = new Date();
+
+          let data = JSON.parse(e.data);
+          let msg = `${now.toISOString()}: ${data.message} ${data.id}`;
+
+          li.appendChild(document.createTextNode(msg));
+          ul.appendChild(li);
+        };
+
+        estream.onerror = (e) => {
+          console.error(e);
+          console.error("CLOSING SERVER EVENT STREAM");
+          estream.close();
+        };
+      };
+    </script>
+  </body>
+</html>

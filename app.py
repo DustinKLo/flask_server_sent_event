@@ -4,7 +4,7 @@ import time
 import json
 import uuid
 
-from flask import Flask, Response
+from flask import Flask, Response, render_template
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -40,9 +40,7 @@ def stream():
 
 @app.route('/')
 def home():
-	return """
-	<h1>Hello World!</h1>
-	"""
+	return render_template('./index.html', template_folder='templates')
 
 
 if __name__ == '__main__':
