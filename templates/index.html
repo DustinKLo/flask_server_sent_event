@@ -26,7 +26,7 @@
       };
 
       const sse = () => {
-        let estream = new EventSource("/stream");
+        let estream = new EventSource("/stream?foo=bar");
         estream.onopen = (e) => console.log(e);
 
         estream.onmessage = (e) => {

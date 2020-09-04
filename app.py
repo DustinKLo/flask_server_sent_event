@@ -4,7 +4,7 @@ import time
 import json
 import uuid
 
-from flask import Flask, Response, render_template
+from flask import Flask, Response, request, render_template
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -31,6 +31,7 @@ def event_stream():
 
 @app.route('/stream')
 def stream():
+	app.logger.info(request.args)
 	resp = Response(event_stream(), mimetype="text/event-stream")
 	resp.headers['Cache-Control'] = 'no-cache'
 	resp.headers["Access-Control-Allow-Origin"] = "*"
