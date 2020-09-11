@@ -1,10 +1,11 @@
 import random
-import datetime
 import time
 import json
 import uuid
 
-from flask import Flask, Response, request, render_template
+from pprint import pprint
+
+from flask import Flask, Response, request, render_template, jsonify
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -37,6 +38,14 @@ def stream():
 	resp.headers["Access-Control-Allow-Origin"] = "*"
 	resp.headers['Content-Type'] = 'text/event-stream'
 	return resp
+
+
+@app.route('/api/test')
+def test():
+	pprint(request.environ)
+	return jsonify({
+		'hello': 'world!'
+	})
 
 
 @app.route('/')
